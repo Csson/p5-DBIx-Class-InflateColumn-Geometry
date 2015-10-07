@@ -5,7 +5,7 @@ use warnings;
 use DBIx::Class::InflateColumn::MultiPolygon::Info;
 
 # VERSION
-# ABSTRACT
+# ABSTRACT: Work easier with MultiPolygons
 
 sub register_column {
     my($self, $column, $info, @rest) = @_;
