@@ -1,12 +1,12 @@
 # NAME
 
-DBIx::Class::InflateColumn::MultiPolygon - Work easier with MultiPolygons
+DBIx::Class::InflateColumn::Geometry::MultiPolygon - Work easier with MultiPolygons
 
 ![Requires Perl 5.10.1+](https://img.shields.io/badge/perl-5.10.1+-brightgreen.svg) [![Travis status](https://api.travis-ci.org//.svg?branch=master)](https://travis-ci.org//)
 
 # VERSION
 
-Version 0.0001, released 2015-10-07.
+Version 0.0001, released 2015-10-08.
 
 # HOMEPAGE
 

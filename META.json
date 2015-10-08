@@ -91,7 +91,7 @@
       "runtime" : {
          "requires" : {
             "Sub::Exporter::Progressive" : "0",
-            "perl" : "5.010001"
+            "perl" : "5.008001"
          }
       },
       "test" : {
@@ -106,12 +106,12 @@
       }
    },
    "provides" : {
-      "DBIx::Class::InflateColumn::MultiPolygon" : {
-         "file" : "lib/DBIx/Class/InflateColumn/MultiPolygon.pm",
+      "DBIx::Class::InflateColumn::Geometry::MultiPolygon" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/MultiPolygon.pm",
          "version" : "0.0001"
       },
       "DBIx::Class::InflateColumn::MultiPolygon::Info" : {
-         "file" : "lib/DBIx/Class/InflateColumn/MultiPolygon/Info.pm",
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/MultiPolygon/Info.pm",
          "version" : "0.0001"
       }
    },
