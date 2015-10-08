@@ -1,4 +1,4 @@
-package DBIx::Class::InflateColumn::MultiPolygon;
+package DBIx::Class::InflateColumn::Geometry::MultiPolygon;
 
 use strict;
 use warnings;
@@ -12,7 +12,7 @@ sub register_column {
 
     $self->next::method($column, $info, @rest);
 
-    return if !defined $info->{'data_type'} || lc $info->{'data_type'} ne 'multipolygon';
+    return if !(defined $info->{'data_type'} && lc $info->{'data_type'} eq 'multipolygon');
 
     $self->inflate_column(
         $column => {
@@ -23,9 +23,9 @@ sub register_column {
                 $object->result_source->schema->storage->dbh_do(sub {
                     my($storage, $dbh, @args) = @_;
 
-                    my %custom_radius = exists $info->{'sphere_radius'} ? (radius => $info->{'sphere_radius'}) : ();
+                    my %custom_radius = exists $info->{'geom_mp_radius'} ? (radius => $info->{'geom_mp_radius'}) : ();
 
-                    DBIx::Class::InflateColumn::MultiPolygon::Info->new(%custom_radius, multi => decode_multipolygon($dbh->selectrow_arrayref("SELECT AsText(?)", {}, $value)->[0]));
+                    DBIx::Class::InflateColumn::Geometry::MultiPolygon::Info->new(%custom_radius, multi => decode_multipolygon($dbh->selectrow_arrayref("SELECT AsText(?)", {}, $value)->[0]));
                 });
             },
             deflate => sub {
