@@ -2,10 +2,13 @@ package DBIx::Class::InflateColumn::Geometry::MultiPolygon;
 
 use strict;
 use warnings;
-use DBIx::Class::InflateColumn::MultiPolygon::Info;
+use base qw/DBIx::Class/;
+use namespace::clean;
+use DBIx::Class::InflateColumn::Geometry::Util qw/decode_multipolygon coord_string/;
+use DBIx::Class::InflateColumn::Geometry::Inflated::MultiPolygon;
 
 # VERSION
-# ABSTRACT: Work easier with MultiPolygons
+# ABSTRACT: Handle MultiPolygon columns
 
 sub register_column {
     my($self, $column, $info, @rest) = @_;
@@ -25,7 +28,7 @@ sub register_column {
 
                     my %custom_radius = exists $info->{'geometry_radius'} ? (radius => $info->{'geometry_radius'}) : ();
 
-                    DBIx::Class::InflateColumn::Geometry::MultiPolygon::Info->new(%custom_radius, multi => decode_multipolygon($dbh->selectrow_arrayref("SELECT AsText(?)", {}, $value)->[0]));
+                    DBIx::Class::InflateColumn::Geometry::Inflated::MultiPolygon->new(%custom_radius, data => decode_multipolygon($dbh->selectrow_arrayref("SELECT AsText(?)", {}, $value)->[0]));
                 });
             },
             deflate => sub {
@@ -34,52 +37,18 @@ sub register_column {
                 my $multipolygon = [];
 
                 foreach my $group (@$value) {
-                    my $textified = [ map { coord_string($_) } @$group ];
+                    my $textified = [ map { '('.coord_string($_).')' } @$group ];
 
                     # The first element in this array ref is the outer ring,
                     # the following are the inner rings
                     push @$multipolygon => '(' . (join ",\n" => @$textified) . ')';
                 }
-                my $multipolygons_string = join ",\n" => @$multipolygon;
+                my $textified = join ",\n" => @$multipolygon;
 
-                return \qq{MultiPolygonFromText('MULTIPOLYGON($multipolygons_string)')};
+                return \qq{MultiPolygonFromText('MULTIPOLYGON($textified)')};
             },
         }
     );
-}
-
-
-sub coord_string {
-    my $polygon = shift;
-    return '(' . (join ', ' => map { "$_->[0] $_->[1]" } @$polygon) . ')';
-}
-
-sub decode_multipolygon {
-    my $multipolygon_astext = shift;
-    $multipolygon_astext =~ s{^MultiPolygon\(}{}i;
-    $multipolygon_astext = substr $multipolygon_astext, 0, -1;
-
-    my $polygon_groups = [split m{\)\),\(\(}, $multipolygon_astext];
-
-    my $multipolygon = [];
-
-    foreach my $polygon_group (@$polygon_groups) {
-        my $group = [];
-
-        my $actual_polygons = [ split m{\),\(}, $polygon_group ];
-
-        foreach my $actual_polygon (@$actual_polygons) {
-            $actual_polygon =~ s{^\(+}{};
-            $actual_polygon =~ s{\)+$}{};
-
-            my $pairs = [map { my($long, $lat) = split / / => $_; { long => $long, lat => $lat } } split ',' => $actual_polygon];
-
-            push @$group => $pairs;
-        }
-        push @$multipolygon => $group;
-    }
-    return $multipolygon;
-
 }
 
 1;

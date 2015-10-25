@@ -106,12 +106,12 @@
       }
    },
    "provides" : {
-      "DBIx::Class::InflateColumn::Geometry::MultiPolygon" : {
-         "file" : "lib/DBIx/Class/InflateColumn/Geometry/MultiPolygon.pm",
+      "DBIx::Class::InflateColumn::Geometry::Core::MultiPolygonInfo" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/Core/MultiPolygonInfo.pm",
          "version" : "0.0001"
       },
-      "DBIx::Class::InflateColumn::MultiPolygon::Info" : {
-         "file" : "lib/DBIx/Class/InflateColumn/Geometry/MultiPolygon/Info.pm",
+      "DBIx::Class::InflateColumn::Geometry::MultiPolygon" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/MultiPolygon.pm",
          "version" : "0.0001"
       }
    },
