@@ -6,5 +6,6 @@ use Throwable::SugarFactory;
 
 exception DataError => "Data doesn't match geometry pattern" => has => [data => (is => 'ro')];
 exception InflateError => "Error inflating" => has => [wanted_type => (is => 'ro')], has => [was_type => (is => 'ro')];
+exception DeflateError => "Unable to defalte unknown hash structure";
 
 1;

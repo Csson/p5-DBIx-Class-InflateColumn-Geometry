@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use base qw/DBIx::Class/;
 use namespace::clean;
-use DBIx::Class::InflateColumn::Geometry::Util qw/decode_multilinestring coord_string/;
+use DBIx::Class::InflateColumn::Geometry::Util ':multilinestring';
 use DBIx::Class::InflateColumn::Geometry::Inflated::MultiLineString;
 
 # VERSION
@@ -32,10 +32,7 @@ sub register_column {
                 });
             },
             deflate => sub {
-                my $value = shift;
-                my $textified = join ',' => map { '('.coord_string($_).')' } @$value;
-
-                return \qq{MultiLineStringFromText('MULTILINESTRING($textified)')};
+                return deflate_multilinestring(shift);
             },
         }
     );

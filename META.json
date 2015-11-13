@@ -1,5 +1,5 @@
 {
-   "abstract" : "Work easier with MultiPolygons",
+   "abstract" : "Handle any Geometry type",
    "author" : [
       "Erik Carlsson <info@code301.com>"
    ],
@@ -26,7 +26,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "Module::Build::Tiny" : "0.039"
+            "ExtUtils::MakeMaker" : "0"
          }
       },
       "develop" : {
@@ -41,8 +41,8 @@
             "Dist::Zilla::Plugin::Git::GatherDir" : "0",
             "Dist::Zilla::Plugin::Git::Push" : "0",
             "Dist::Zilla::Plugin::Git::Tag" : "0",
-            "Dist::Zilla::Plugin::GithubMeta" : "0",
             "Dist::Zilla::Plugin::License" : "0",
+            "Dist::Zilla::Plugin::MakeMaker" : "0",
             "Dist::Zilla::Plugin::Manifest" : "0",
             "Dist::Zilla::Plugin::ManifestSkip" : "0",
             "Dist::Zilla::Plugin::MetaJSON" : "0",
@@ -50,7 +50,6 @@
             "Dist::Zilla::Plugin::MetaProvides::Class" : "0",
             "Dist::Zilla::Plugin::MetaProvides::Package" : "0",
             "Dist::Zilla::Plugin::MetaYAML" : "0",
-            "Dist::Zilla::Plugin::ModuleBuildTiny" : "0",
             "Dist::Zilla::Plugin::NextRelease" : "0",
             "Dist::Zilla::Plugin::NextVersion::Semantic" : "0",
             "Dist::Zilla::Plugin::OurPkgVersion" : "0",
@@ -68,7 +67,7 @@
             "Dist::Zilla::Plugin::Test::ReportPrereqs" : "0",
             "Dist::Zilla::Plugin::TestRelease" : "0",
             "Dist::Zilla::Plugin::TravisYML" : "0",
-            "Dist::Zilla::Plugin::UploadToCPAN" : "0",
+            "Dist::Zilla::Plugin::UploadToStratopan" : "0",
             "Pod::Elemental::Transformer::List" : "0",
             "Pod::Weaver::Plugin::SingleEncoding" : "0",
             "Pod::Weaver::Plugin::Transformer" : "0",
@@ -106,12 +105,72 @@
       }
    },
    "provides" : {
-      "DBIx::Class::InflateColumn::Geometry::Core::MultiPolygonInfo" : {
-         "file" : "lib/DBIx/Class/InflateColumn/Geometry/Core/MultiPolygonInfo.pm",
+      "DBIx::Class::InflateColumn::Geometry" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::Exceptions" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/Exceptions.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::Inflated::LineString" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/Inflated/LineString.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::Inflated::MultiLineString" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/Inflated/MultiLineString.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::Inflated::MultiPoint" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/Inflated/MultiPoint.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::Inflated::MultiPolygon" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/Inflated/MultiPolygon.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::Inflated::Point" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/Inflated/Point.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::Inflated::Polygon" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/Inflated/Polygon.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::LineString" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/LineString.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::MultiLineString" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/MultiLineString.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::MultiPoint" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/MultiPoint.pm",
          "version" : "0.0001"
       },
       "DBIx::Class::InflateColumn::Geometry::MultiPolygon" : {
          "file" : "lib/DBIx/Class/InflateColumn/Geometry/MultiPolygon.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::Point" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/Point.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::Polygon" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/Polygon.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::Role::Area" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/Role/Area.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::Role::Common" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/Role/Common.pm",
+         "version" : "0.0001"
+      },
+      "DBIx::Class::InflateColumn::Geometry::Util" : {
+         "file" : "lib/DBIx/Class/InflateColumn/Geometry/Util.pm",
          "version" : "0.0001"
       }
    },

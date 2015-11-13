@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use base qw/DBIx::Class/;
 use namespace::clean;
-use DBIx::Class::InflateColumn::Geometry::Util qw/decode_polygon coord_string/;
+use DBIx::Class::InflateColumn::Geometry::Util ':polygon';
 use DBIx::Class::InflateColumn::Geometry::Inflated::Polygon;
 
 # VERSION
@@ -32,10 +32,7 @@ sub register_column {
                 });
             },
             deflate => sub {
-                my $value = shift;
-                my $textified = join ',' => map { '('.coord_string($_).')' } @$value;
-
-                return \qq{PolygonFromText('POLYGON($textified)')};
+                return deflate_polygon(shift);
             },
         }
     );

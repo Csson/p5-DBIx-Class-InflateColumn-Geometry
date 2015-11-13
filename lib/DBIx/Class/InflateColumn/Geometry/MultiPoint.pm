@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use base qw/DBIx::Class/;
 use namespace::clean;
-use DBIx::Class::InflateColumn::Geometry::Util qw/decode_multipoint coord_string/;
+use DBIx::Class::InflateColumn::Geometry::Util ':multipoint';
 use DBIx::Class::InflateColumn::Geometry::Inflated::MultiPoint;
 
 # VERSION
@@ -32,10 +32,7 @@ sub register_column {
                 });
             },
             deflate => sub {
-                my $value = shift;
-                my $textified = coord_string($value);
-
-                return \qq{MultiPointFromText('MULTIPOINT($textified)')};
+                return deflate_multipoint(shift);
             },
         }
     );

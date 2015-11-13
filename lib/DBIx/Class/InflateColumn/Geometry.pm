@@ -1,14 +1,14 @@
-package DBIx::Class::InflateColumn::Geometry::LineString;
+package DBIx::Class::InflateColumn::Geometry;
 
 use strict;
 use warnings;
 use base qw/DBIx::Class/;
 use namespace::clean;
-use DBIx::Class::InflateColumn::Geometry::Util qw/decode_any_geometry/;
-use DBIx::Class::InflateColumn::Geometry::Inflated::LineString;
-
+use DBIx::Class::InflateColumn::Geometry::Util qw/inflate_any_geometry deflate_any_geometry/;
+use DBIx::Class::InflateColumn::Geometry::Exceptions;
+use Mojo::Util 'dumper';
 # VERSION
-# ABSTRACT: Handle LineString columns
+# ABSTRACT: Handle any Geometry type
 
 sub register_column {
     my($self, $column, $info, @rest) = @_;
@@ -32,7 +32,7 @@ sub register_column {
                 });
             },
             deflate => sub {
-                return decode_any_geometry(shift);
+                return deflate_any_geometry(shift);
             },
         }
     );

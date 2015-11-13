@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use base qw/DBIx::Class/;
 use namespace::clean;
-use DBIx::Class::InflateColumn::Geometry::Util qw/decode_point coord_string/;
+use DBIx::Class::InflateColumn::Geometry::Util ':point';
 use DBIx::Class::InflateColumn::Geometry::Inflated::Point;
 
 # VERSION
@@ -32,10 +32,7 @@ sub register_column {
                 });
             },
             deflate => sub {
-                my $value = shift;
-                my $textified = coord_string($value);
-
-                return \qq{PointFromText('POINT($textified)')};
+                deflate_point(shift);
             },
         }
     );

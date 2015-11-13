@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use base qw/DBIx::Class/;
 use namespace::clean;
-use DBIx::Class::InflateColumn::Geometry::Util qw/decode_multipolygon coord_string/;
+use DBIx::Class::InflateColumn::Geometry::Util ':multipolygon';
 use DBIx::Class::InflateColumn::Geometry::Inflated::MultiPolygon;
 
 # VERSION
@@ -32,20 +32,7 @@ sub register_column {
                 });
             },
             deflate => sub {
-                my $value = shift;
-
-                my $multipolygon = [];
-
-                foreach my $group (@$value) {
-                    my $textified = [ map { '('.coord_string($_).')' } @$group ];
-
-                    # The first element in this array ref is the outer ring,
-                    # the following are the inner rings
-                    push @$multipolygon => '(' . (join ",\n" => @$textified) . ')';
-                }
-                my $textified = join ",\n" => @$multipolygon;
-
-                return \qq{MultiPolygonFromText('MULTIPOLYGON($textified)')};
+                return deflate_multipolygon(shift);
             },
         }
     );
