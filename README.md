@@ -2,11 +2,15 @@
 
 DBIx::Class::InflateColumn::Geometry - Handle any Geometry type
 
-![Requires Perl 5.8.1+](https://img.shields.io/badge/perl-5.8.1+-brightgreen.svg) [![Travis status](https://api.travis-ci.org//.svg?branch=master)](https://travis-ci.org//)
+![Requires Perl 5.8.1](https://img.shields.io/badge/perl-5.8.1-brightgreen.svg) [![Travis status](https://api.travis-ci.org//.svg?branch=master)](https://travis-ci.org//)
 
 # VERSION
 
 Version 0.0001, released 2015-11-13.
+
+# SOURCE
+
+[https://github.com/Csson/p5-DBIx-Class-InflateColumn-Geometry](https://github.com/Csson/p5-DBIx-Class-InflateColumn-Geometry)
 
 # HOMEPAGE
 
