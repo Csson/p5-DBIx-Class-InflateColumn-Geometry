@@ -2,7 +2,7 @@
 doctype: dist
 
 header:
-  name: DBIx-Class-InflateColumn-MultiPolygon
+  name: DBIx-Class-InflateColumn-Geometry
 
 prereqs:
   runtime:

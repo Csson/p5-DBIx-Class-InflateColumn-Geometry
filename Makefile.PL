@@ -15,11 +15,11 @@ my %WriteMakefileArgs = (
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0
   },
-  "DISTNAME" => "DBIx-Class-InflateColumn-MultiPolygon",
+  "DISTNAME" => "DBIx-Class-InflateColumn-Geometry",
   "EXE_FILES" => [],
   "LICENSE" => "perl",
   "MIN_PERL_VERSION" => "5.008001",
-  "NAME" => "DBIx::Class::InflateColumn::MultiPolygon",
+  "NAME" => "DBIx::Class::InflateColumn::Geometry",
   "PREREQ_PM" => {
     "Sub::Exporter::Progressive" => 0
   },

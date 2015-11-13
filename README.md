@@ -10,7 +10,7 @@ Version 0.0001, released 2015-11-13.
 
 # HOMEPAGE
 
-[https://metacpan.org/release/DBIx-Class-InflateColumn-MultiPolygon](https://metacpan.org/release/DBIx-Class-InflateColumn-MultiPolygon)
+[https://metacpan.org/release/DBIx-Class-InflateColumn-Geometry](https://metacpan.org/release/DBIx-Class-InflateColumn-Geometry)
 
 # AUTHOR
 
